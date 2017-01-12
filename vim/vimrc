@@ -11,6 +11,7 @@ Plug 'git://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/elzr/vim-json.git'
 Plug 'https://github.com/jistr/vim-nerdtree-tabs.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
+Plug 'https://github.com/posva/vim-vue.git'
 
 call plug#end()
 
@@ -118,3 +119,5 @@ if has("mouse_sgr")
 else
     set ttymouse=xterm2
 end
+
+set tags=./tags;,tags;
