@@ -14,4 +14,7 @@ if [[ $platform == 'osx' ]]; then
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 fi
 
+# Color the terminal
+PS1='\[\e[35m\]\h | \W:\[\e[0m\] '
+
 source ~/.bash_aliases.sh
