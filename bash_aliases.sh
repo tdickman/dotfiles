@@ -1,3 +1,11 @@
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform='osx'
+fi
+
 # Kubernetes
 alias k=kubectl
 function gproject { gcloud config set project "$1"; }
