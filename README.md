@@ -3,6 +3,7 @@ Installation:
     git clone git://github.com/tdickman/dotfiles.git
     cd dotfiles
     ./install.sh
+    # Add `source ~/.bash_shared.sh` to either your bash_profile or bashrc
 
 OSX:
 

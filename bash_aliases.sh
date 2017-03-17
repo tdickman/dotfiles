@@ -25,9 +25,9 @@ export -f kup
 alias kdown="kubectl delete -f ."
 
 # This file
-alias aedit='vim ~/.bash_aliases'
-alias aload='source ~/.bash_profile'
-alias ashow='cat ~/.bash_aliases'
+alias aedit='vim ~/.bash_aliases.sh'
+alias aload='source ~/.bash_aliases.sh'
+alias ashow='cat ~/.bash_aliases.sh'
 
 alias ..='cd ..'
 alias -- -='cd -'
@@ -39,7 +39,7 @@ export mcd
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 alias g=git
-function gr { grep -r --exclude-dir=node_modules --exclude=*.pyc --exclude=tags "$1" *; }
+function gr { grep -r --exclude-dir=node_modules --exclude=*.pyc --exclude=*.swp --exclude=tags "$1" *; }
 export -f gr
 
 # TODO
