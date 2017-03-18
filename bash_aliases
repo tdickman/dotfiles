@@ -22,11 +22,16 @@ function kup {
     sed "s/IMAGENAME/gcr.io\/labs-sandbox\/${project}:${uuid}/g" controller.yaml | kubectl apply -f -
 }
 export -f kup
+function ks {
+    export CONTEXT=$(kubectl config view | awk '/current-context/ {print $2}');
+    kubectl config set-context $CONTEXT --namespace="$1";
+}
+export -f ks
 alias kdown="kubectl delete -f ."
 
 # This file
 alias aedit='vim ~/.bash_aliases'
-alias aload='source ~/.bash_profile'
+alias aload='source ~/.bash_aliases'
 alias ashow='cat ~/.bash_aliases'
 
 alias ..='cd ..'
