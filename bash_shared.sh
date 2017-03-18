@@ -14,7 +14,14 @@ if [[ $platform == 'osx' ]]; then
     export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 fi
 
+# Copy
+if [[ $platform == 'linux' ]]; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
 # Color the terminal
-PS1='\[\e[35m\]\h | \W:\[\e[0m\] '
+# PS1='\[\e[35m\]\h | \W:\[\e[0m\] '
+PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W\[\e[0m\] '
 
 source ~/.bash_aliases.sh
