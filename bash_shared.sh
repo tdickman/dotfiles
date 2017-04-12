@@ -22,6 +22,10 @@ fi
 
 # Color the terminal
 # PS1='\[\e[35m\]\h | \W:\[\e[0m\] '
-PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W\[\e[0m\] '
+if [ "$SSH_CONNECTION" ]; then
+    PS1='\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\W\[\e[0m\] '
+else
+    PS1='\[\033[01;34m\]\W\[\e[0m\] '
+fi
 
 source ~/.bash_aliases.sh

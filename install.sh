@@ -9,3 +9,6 @@ sudo ln -s $SCRIPTPATH/pykub.py /usr/local/bin/pykub
 sudo chmod +x /usr/local/bin/pykub
 ln -s ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
+
+# Syntastic dependencies
+npm install -g jshint
