@@ -134,3 +134,5 @@ autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
 nmap =j :%!python -m json.tool<CR>
 set foldmethod=syntax
 set foldlevel=99
+
+nmap <C-W>! <Plug>Kwbd
