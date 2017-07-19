@@ -17,6 +17,7 @@ Plug 'https://github.com/chrisbra/csv.vim.git'
 Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/tomlion/vim-solidity.git'
+Plug 'https://github.com/kballard/vim-swift.git'
 
 call plug#end()
 
@@ -131,6 +132,7 @@ end
 set tags=./tags;,tags;
 
 autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+autocmd BufNewFile,BufRead *.leaf set ft=json
 
 " JSON
 nmap =j :%!python -m json.tool<CR>
