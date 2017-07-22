@@ -37,6 +37,14 @@ killall gpg-agent
 ln -s /usr/bin/gpg2 /usr/bin/gpg
 ```
 
+# Set your key to be trusted
+
+```
+gpg -K
+gpg --edit-key <KEY_ID>
+gpg> trust
+```
+
 # Sign git commits by default
 
 https://help.github.com/articles/signing-commits-using-gpg/
