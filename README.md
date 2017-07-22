@@ -15,3 +15,6 @@ Ubuntu:
 
 # Run the following for each project
 ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") # https://www.fusionbox.com/blog/detail/navigating-your-django-project-with-vim-and-ctags/590/
+
+# Git config
+git config --global commit.gpgsign true  # Sign commits

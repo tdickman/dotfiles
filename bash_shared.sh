@@ -28,10 +28,25 @@ else
     PS1='\[\033[01;34m\]\W\[\e[0m\] '
 fi
 
-# Yubikey
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+### Yubikey ###
+# Enable gpg-agent if it is not running
+GPG_AGENT_SOCKET="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+
+# Fall back for 16.04
+if [[ $(lsb_release -s -r) = "16.04" ]]; then
+    GPG_AGENT_SOCKET="${HOME}/.gnupg/S.gpg-agent.ssh"
+fi
+
+if [ ! -S $GPG_AGENT_SOCKET ]; then
+  gpg-agent --daemon >/dev/null 2>&1
+  export GPG_TTY=$(tty)
+fi
+
+# Set SSH to use gpg-agent if it is configured to do so 
+GNUPGCONFIG=${GNUPGHOME:-"$HOME/.gnupg/gpg-agent.conf"}
+if grep -q enable-ssh-support "$GNUPGCONFIG"; then
+  unset SSH_AGENT_PID
+  export SSH_AUTH_SOCK=$GPG_AGENT_SOCKET
 fi
 
 source ~/.bash_aliases.sh
