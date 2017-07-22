@@ -10,5 +10,10 @@ sudo chmod +x /usr/local/bin/pykub
 ln -s ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
 
+# Git aliases
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.st status
+
 # Syntastic dependencies
 npm install -g jshint

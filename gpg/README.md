@@ -25,7 +25,11 @@ enable-ssh-support
 
 # Update bash init file
 
-See bash_shared.sh content
+See bash_shared.sh content. You may have to kill gpg-agent to get it to restart and use the new settings:
+
+```
+killall gpg-agent
+```
 
 # Symlink gpg to gpg2 on older versions of ubuntu
 
