@@ -55,3 +55,12 @@ git config --global commit.gpgsign true
 
 # Getting ssh public key
 ssh-add -L
+
+# Changing yubikey device (swapping to backup)
+
+```
+rm -rf ~/.gnupg/private-keys-v1.d
+killall gpg-agent
+gpg2 --card-status
+# Trust new key as shown above
+```
