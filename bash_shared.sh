@@ -32,8 +32,8 @@ fi
 # Enable gpg-agent if it is not running
 GPG_AGENT_SOCKET="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 
-# Fall back for 16.04
-if [[ $(lsb_release -s -r) = "16.04" ]]; then
+# Fall back for or osx
+if [[ $(uname) = "Darwin" ]] || [[ $(lsb_release -s -r) = "16.04" ]]; then
     GPG_AGENT_SOCKET="${HOME}/.gnupg/S.gpg-agent.ssh"
 fi
 
