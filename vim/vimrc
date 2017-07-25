@@ -108,6 +108,8 @@ endfunction
 
 map <leader>mw :call MarkWindowSwap()<CR>
 map <leader>pw :call DoWindowSwap()<CR>
+vnoremap <leader>64 c<c-r>=system('base64',@")<cr><esc>
+vnoremap <leader>64d c<c-r>=system('base64 --decode',@")<cr><esc>
 
 command Term ConqueTerm bash
 set backspace=indent,eol,start
