@@ -71,7 +71,7 @@ alias jstags='ctags -R --exclude=.git --exclude=log *'
 # Usage: 2factor -> list of accounts
 # Usage: 2factor aws -> copies code to clipboard for entry that contains aws
 # TODO: You receive the wrong code if there are multiple matches
-function 2factor {
+function otp {
     if [ -z "$1" ]; then
         ykman oath list;
         echo "Enter a partial name from above, ex 2factor aws";
@@ -93,4 +93,4 @@ function 2factor {
         echo "Code copied to clipboard ($resp)";
     fi
 }
-export -f 2factor
+export -f otp
