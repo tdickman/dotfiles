@@ -68,8 +68,8 @@ alias jstags='ctags -R --exclude=.git --exclude=log *'
 
 # Copies 2 factor auth code to clipboard from yubikey.
 # Requires this: https://developers.yubico.com/yubikey-manager/
-# Usage: 2factor -> list of accounts
-# Usage: 2factor aws -> copies code to clipboard for entry that contains aws
+# Usage: otp -> list of accounts
+# Usage: otp aws -> copies code to clipboard for entry that contains aws
 # TODO: You receive the wrong code if there are multiple matches
 function otp {
     if [ -z "$1" ]; then
