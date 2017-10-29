@@ -18,6 +18,9 @@ fi
 if [[ $platform == 'linux' ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
+    xmodmap -e "remove lock = Caps_Lock"
+    xmodmap -e "keycode 66 = Control_L"
+    xmodmap -e "add control = Control_L"
 fi
 
 # Color the terminal
@@ -48,5 +51,10 @@ if grep -q enable-ssh-support "$GNUPGCONFIG"; then
   unset SSH_AGENT_PID
   export SSH_AUTH_SOCK=$GPG_AGENT_SOCKET
 fi
+
+mem()
+{                                                                                                      
+    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+}
 
 source ~/.bash_aliases.sh
