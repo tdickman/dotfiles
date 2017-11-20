@@ -18,6 +18,9 @@ fi
 if [[ $platform == 'linux' ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
+    xmodmap -e "remove lock = Caps_Lock"
+    xmodmap -e "keycode 66 = Control_L"
+    xmodmap -e "add control = Control_L"
 fi
 
 # Color the terminal
@@ -32,8 +35,8 @@ fi
 # Enable gpg-agent if it is not running
 GPG_AGENT_SOCKET="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 
-# Fall back for 16.04
-if [[ $(lsb_release -s -r) = "16.04" ]]; then
+# Fall back for or osx
+if [[ $(uname) = "Darwin" ]] || [[ $(lsb_release -s -r) = "16.04" ]]; then
     GPG_AGENT_SOCKET="${HOME}/.gnupg/S.gpg-agent.ssh"
 fi
 
@@ -48,5 +51,10 @@ if grep -q enable-ssh-support "$GNUPGCONFIG"; then
   unset SSH_AGENT_PID
   export SSH_AUTH_SOCK=$GPG_AGENT_SOCKET
 fi
+
+mem()
+{                                                                                                      
+    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+}
 
 source ~/.bash_aliases.sh

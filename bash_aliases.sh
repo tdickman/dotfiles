@@ -70,3 +70,32 @@ export -f pytags
 alias jstags='ctags -R --exclude=.git --exclude=log *'
 
 alias mhome='mosh -a tom@home.epicconstructions.com --ssh="ssh -p 2222"'
+
+# Copies 2 factor auth code to clipboard from yubikey.
+# Requires this: https://developers.yubico.com/yubikey-manager/
+# Usage: otp -> list of accounts
+# Usage: otp aws -> copies code to clipboard for entry that contains aws
+# TODO: You receive the wrong code if there are multiple matches
+function otp {
+    if [ -z "$1" ]; then
+        ykman oath list;
+        echo "Enter a partial name from above, ex 2factor aws";
+    else
+        codeLength=0;
+        attempts=0;
+        # Retry since this returns intermittent errors
+        while [ "$codeLength" -ne 6 ]; do
+            if [ "$attempts" -ge 5 ]; then
+                echo "Failed to get code. Make sure yubikey is plugged in";
+                exit 1;
+            fi
+            ((attempts=attempts+1));
+            resp=`ykman oath code $1 2> /dev/null`
+            code="${resp##* }"
+            codeLength="${#code}"
+        done
+        echo -n $code | pbcopy;
+        echo "Code copied to clipboard ($resp)";
+    fi
+}
+export -f otp
