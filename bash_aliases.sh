@@ -58,6 +58,10 @@ export -f gr
 # TODO
 alias todo='vim ~/todo.txt'
 
+# SSH Tunnel
+function phome { ssh -N -L $1:localhost:$1 -p 2222 home.epicconstructions.com; }
+export phome
+
 # Ctags
 function pytags {
     ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
@@ -65,6 +69,7 @@ function pytags {
 export -f pytags
 alias jstags='ctags -R --exclude=.git --exclude=log *'
 
+alias mhome='mosh -a tom@home.epicconstructions.com --ssh="ssh -p 2222"'
 
 # Copies 2 factor auth code to clipboard from yubikey.
 # Requires this: https://developers.yubico.com/yubikey-manager/
