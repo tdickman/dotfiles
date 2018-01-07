@@ -18,9 +18,9 @@ fi
 if [[ $platform == 'linux' ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
-    xmodmap -e "remove lock = Caps_Lock"
-    xmodmap -e "keycode 66 = Control_L"
-    xmodmap -e "add control = Control_L"
+    # xmodmap -e "remove lock = Caps_Lock"
+    # xmodmap -e "keycode 66 = Control_L"
+    # xmodmap -e "add control = Control_L"
 fi
 
 # Color the terminal
