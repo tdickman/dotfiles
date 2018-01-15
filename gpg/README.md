@@ -12,7 +12,7 @@ sudo apt-get install gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcscd s
 Import public key
 
 ```
-curl "https://keybase.io/tdickman/pgp_keys.asc?fingerprint=3d8224e300f1693682db2cf086d69ca76e6f22a7" | gpg2 --import
+curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-key.asc" | gpg2 --import
 ```
 
 Add the following to your .gnupg/gpg-agent.conf file:
@@ -43,6 +43,7 @@ ln -s /usr/bin/gpg2 /usr/bin/gpg
 gpg -K
 gpg --edit-key <KEY_ID>
 gpg> trust
+gpg --card-status
 ```
 
 # Sign git commits by default
