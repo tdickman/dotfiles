@@ -150,3 +150,4 @@ export -f otp
 # Mount encrypted dir
 alias mencrypted='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted'
 alias uencrypted='sudo umount ~/Encrypted'
+alias start_torrent="~/dotfiles/start_torrent.sh"
