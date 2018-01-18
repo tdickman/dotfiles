@@ -117,6 +117,11 @@ export -f pytags
 alias jstags='ctags -R --exclude=.git --exclude=log *'
 
 alias mhome='mosh -a tom@home.epicconstructions.com --ssh="ssh -p 2222"'
+function loadnvm {
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+}
+export -f loadnvm
 
 # Copies 2 factor auth code to clipboard from yubikey.
 # Requires this: https://developers.yubico.com/yubikey-manager/

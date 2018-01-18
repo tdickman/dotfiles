@@ -18,6 +18,8 @@ Plug 'https://github.com/davidhalter/jedi-vim.git'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/tomlion/vim-solidity.git'
 Plug 'https://github.com/kballard/vim-swift.git'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
