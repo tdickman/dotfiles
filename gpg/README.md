@@ -65,3 +65,54 @@ killall gpg-agent
 gpg2 --card-status
 # Trust new key as shown above
 ```
+
+# Renewal
+
+https://two-wrongs.com/checklist-for-renewing-gpg-subkeys
+
+Update key expiration:
+
+```
+gpg --import <master-key>
+gpg --import <sub-keys>
+gpg --list-secret-keys
+gpg --edit-key 0x...
+# Repeat for each subkey
+key <n>
+expire
+save
+```
+
+Backup:
+
+```
+gpg2 -a --export-secret-key 0x2896DB4A0E427716 >> /media/BACKUP/<new-date>2896DB4A0E427716.master.key
+gpg2 -a --export-secret-subkeys 0x2896DB4A0E427716 >> /media/BACKUP/<new-date>2896DB4A0E427716.sub.key
+```
+
+Import to yubikey:
+
+Note: This 'moves' the keys from the computer to the smartcard. We will need to
+reboot and repeat the entire process restoring from the backed up keys rather
+than changing the expiration on the existing ones for the second device.
+
+```
+gpg --edit-key 0x...
+# Repeat for each subkey
+key <n>
+keytocard
+save
+```
+
+Export public key:
+
+```
+gpg -a --export 0x... > my-public-key.asc
+```
+
+Import public key to computers:
+
+```
+mv /media/... ~/dotfiles/gpg/
+gpg --import my-public-key.asc
+```
