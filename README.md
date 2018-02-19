@@ -43,8 +43,8 @@ buildscript {
 apply plugin: "com.fagyapong.ktsyntastic"
 ```
 
-Then run the following to generate a .syntastic_kotlinc_config file:
+Then run the following to generate a .ale_kotlinc_config file:
 
 ```
-./gradlew kotlinSyntastic
+./gradlew kotlinAle
 ```
