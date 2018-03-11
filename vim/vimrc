@@ -23,6 +23,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'udalov/kotlin-vim'
 Plug 'rnestler/michelson.vim'
+Plug 'sjurgemeyer/vimport'
 
 call plug#end()
 
@@ -79,7 +80,7 @@ map ¢ :tabmove 3<CR>
 " Blank current pane
 command B bp|sp|bn|bd
 
-" Syntastic python3
+" Syntastic python3 (disabled)
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
@@ -97,6 +98,9 @@ let g:syntastic_kotlin_kotlinc_config_file_enabled=1
 " Ale (replacement for Syntastic)
 let g:ale_completion_enabled = 1
 let g:ale_python_flake8_args="--ignore=E501,E225"
+
+" Vimport
+let g:vimport_lookup_gradle_classpath = 1
 
 " Allow swapping of panes via ,mw and ,pw
 function! MarkWindowSwap()
