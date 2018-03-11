@@ -22,6 +22,7 @@ Plug 'https://github.com/w0rp/ale.git'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'udalov/kotlin-vim'
+Plug 'rnestler/michelson.vim'
 
 call plug#end()
 
@@ -55,7 +56,7 @@ set ttymouse=xterm2
 set number
 let NERDTreeIgnore = ['__pycache__', '\.pyc$']
 set splitright
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Map function keys to tabs
 map <Esc>OP :tabn1<CR>
@@ -144,7 +145,7 @@ end
 
 set tags=./tags;,tags;
 
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
+" autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 noexpandtab
 autocmd BufNewFile,BufRead *.leaf set ft=json
 
 " JSON
