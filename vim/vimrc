@@ -31,10 +31,17 @@ call plug#end()
 call pathogen#infect()
 call pathogen#helptags()
 
+" By default use 4 spaces
 set shiftwidth=4
 set ts=4
 set expandtab
 set term=builtin_ansi
+
+" Use 2 spaces for html and js
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype scss setlocal ts=2 sw=2 expandtab
+autocmd Filetype js setlocal ts=2 sw=2 expandtab
+autocmd Filetype vue setlocal ts=2 sw=2 expandtab
 
 filetype plugin indent on
 syntax on
