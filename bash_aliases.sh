@@ -152,6 +152,15 @@ function otp {
 }
 export -f otp
 
+function yubi-remote {
+    GPG_AGENT_SOCKET="${HOME}/.gnupg/S.gpg-agent.ssh.remote"
+}
+export -f yubi-remote
+function yubi-remote-clean {
+    rm "${HOME}/.gnupg/S.gpg-agent.ssh.remote"
+}
+export -f yubi-remote-clean
+
 # Mount encrypted dir
 alias mencrypted='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted'
 alias uencrypted='sudo umount ~/Encrypted'
