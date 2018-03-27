@@ -18,4 +18,4 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 # Syntastic dependencies
-npm install -g jshint
+sudo npm install -g jshint eslint eslint-plugin-vue
