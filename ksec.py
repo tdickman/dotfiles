@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# Usage ##
+# ksec COMMAND AND ARGUMENTS
+#
+# Any normal command can be prefaced with `ksec`, which will run the original
+# command with any secrets from a .secrets.yaml file injected as environment
+# variables.
 import base64
 import os
 import subprocess
@@ -13,4 +19,4 @@ with open('.secrets.yaml') as f:
             os.environ[key.upper()] = decoded_value
 
 
-subprocess.call('python3 {}'.format(sys.argv[1]), shell=True)
+subprocess.call('{}'.format(' '.join(sys.argv[1:])), shell=True)

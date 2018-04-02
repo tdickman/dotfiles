@@ -7,8 +7,8 @@ ln -s $SCRIPTPATH/bash_aliases.sh ~/.bash_aliases.sh
 ln -s $SCRIPTPATH/bash_shared.sh ~/.bash_shared.sh
 ln -s $SCRIPTPATH/.jshintrc ~/.jshintrc
 ln -s $SCRIPTPATH/.ctags ~/.ctags
-sudo ln -s $SCRIPTPATH/pykub.py /usr/local/bin/pykub
-sudo chmod +x /usr/local/bin/pykub
+sudo ln -s $SCRIPTPATH/ksec.py /usr/local/bin/ksec
+sudo chmod +x /usr/local/bin/ksec
 ln -s ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
 
