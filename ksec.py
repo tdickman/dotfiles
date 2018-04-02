@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # Usage ##
 # ksec COMMAND AND ARGUMENTS
 #
@@ -14,9 +14,10 @@ import yaml
 
 with open('.secrets.yaml') as f:
     for doc in yaml.load_all(f):
-        for key, value in doc['data'].items():
-            decoded_value = base64.b64decode(value).decode()
-            os.environ[key.upper()] = decoded_value
+        for secret in doc['items']:
+            for key, value in secret['data'].items():
+                decoded_value = base64.b64decode(value).decode()
+                os.environ[key.upper()] = decoded_value
 
 
 subprocess.call('{}'.format(' '.join(sys.argv[1:])), shell=True)
