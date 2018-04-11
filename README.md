@@ -48,3 +48,9 @@ Then run the following to generate a .ale_kotlinc_config file:
 ```
 ./gradlew kotlinAle
 ```
+
+# Ubuntu general settings
+
+```
+gsettings set org.gnome.shell.app-switcher current-workspace-only true
+```
