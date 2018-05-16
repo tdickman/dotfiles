@@ -16,6 +16,7 @@ vim +PlugInstall +qall
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.st status
+git config --global core.excludesfile ~/dotfiles/global_gitignore
 
 # Syntastic dependencies
 sudo npm install -g jshint eslint eslint-plugin-vue
