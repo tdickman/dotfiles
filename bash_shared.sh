@@ -58,3 +58,4 @@ mem()
 }
 
 source ~/.bash_aliases.sh
+source <(kubectl completion bash | sed 's/kubectl/k/g')
