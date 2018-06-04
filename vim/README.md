@@ -15,3 +15,7 @@ zo - open current block
 
 # Buffers
 Cntrl-w ! - Clear current buffer
+
+# Python
+,g - jump to assignment
+,d - jump to definition
