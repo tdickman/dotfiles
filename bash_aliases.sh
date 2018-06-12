@@ -99,7 +99,7 @@ export mcd
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 alias g=git
-function gr { grep -r --exclude-dir=node_modules --exclude=*.pyc --exclude=*.swp --exclude=tags "$1" *; }
+function gr { grep -r --exclude-dir=node_modules --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
 export -f gr
 
 # TODO
