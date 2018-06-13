@@ -30,11 +30,13 @@ function kup {
     sed "s/IMAGENAME/gcr.io\/labs-sandbox\/${project}:${uuid}/g" controller.yaml | kubectl apply -f -
 }
 export -f kup
-function ks {
+function ksn {
     export CONTEXT=$(kubectl config view | awk '/current-context/ {print $2}');
     kubectl config set-context $CONTEXT --namespace="$1";
 }
-export -f ks
+export -f ksn
+alias ksc='kubectl config use-context $1'
+alias kgc='kubectl config get-contexts'
 alias kdown="kubectl delete -f ."
 
 transfer() { 

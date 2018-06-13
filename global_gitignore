@@ -3,3 +3,4 @@
 .mypy_cache/
 *.pyc
 .pytest_cache/
+antipatterns.md
