@@ -169,3 +169,8 @@ alias uencrypted='sudo umount ~/Encrypted'
 alias gc='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted && xdg-open Encrypted/giftcards/reselling.ods && echo "Press enter to unmount volume" && read _ && sudo umount ~/Encrypted'
 alias start_torrent="~/dotfiles/start_torrent.sh"
 alias dc="docker-compose"
+function ssh-yubi {
+    ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
+    ssh -R /run/user/1000/gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
+}
+export -f ssh-yubi
