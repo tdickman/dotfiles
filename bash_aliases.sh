@@ -8,6 +8,7 @@ fi
 
 # Kubernetes
 alias k=kubectl
+alias ko=kubectl-old
 function gproject { gcloud config set project "$1"; }
 export gproject
 function gcluster { gcloud config set container/cluster "$1"; gcloud container clusters get-credentials "$1"; }
