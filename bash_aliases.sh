@@ -38,6 +38,7 @@ function ksn {
 export -f ksn
 alias ksc='kubectl config use-context $1'
 alias kgc='kubectl config get-contexts'
+alias krc='kubectl config rename-context $1 $2'
 alias kdown="kubectl delete -f ."
 
 transfer() { 
