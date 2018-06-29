@@ -108,6 +108,7 @@ let g:syntastic_kotlin_kotlinc_config_file_enabled=1
 let g:ale_completion_enabled = 1
 let g:ale_python_flake8_args="--ignore=E501,E225"
 let g:ale_python_mypy_options="--ignore-missing-imports"
+let b:ale_linters = {'python': ['pylint']}
 
 " Vimport
 let g:vimport_lookup_gradle_classpath = 1
