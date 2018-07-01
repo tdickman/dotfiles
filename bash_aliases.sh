@@ -180,14 +180,14 @@ export -f ssh-yubi
 function vpnlocal {
     echo $'vpn\n'$(pass 192.168.1.1/vpn | head -n 1) > /tmp/vpn
     chmod 600 /tmp/vpn
-    sudo openvpn --config Dropbox/VPN/home.epicconstructions.com.local.ovpn --auth-user-pass /tmp/vpn
+    sudo openvpn --config ~/Dropbox/VPN/home.epicconstructions.com.local.ovpn --auth-user-pass /tmp/vpn
     rm /tmp/vpn
 }
 export -f vpnlocal
 function vpnall {
     echo $'vpn\n'$(pass 192.168.1.1/vpn | head -n 1) > /tmp/vpn
     chmod 600 /tmp/vpn
-    sudo openvpn --config Dropbox/VPN/home.epicconstructions.com.all.ovpn --auth-user-pass /tmp/vpn
+    sudo openvpn --config ~/Dropbox/VPN/home.epicconstructions.com.all.ovpn --auth-user-pass /tmp/vpn
     rm /tmp/vpn
 }
 export -f vpnall
