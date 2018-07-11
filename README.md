@@ -55,3 +55,11 @@ Then run the following to generate a .ale_kotlinc_config file:
 ```
 gsettings set org.gnome.shell.app-switcher current-workspace-only true
 ```
+
+# Tmux Resurrection / Vim
+
+Start saving vim sessions for a directory by running `:Obsess`. This will cause
+the session to automatically get saved on every change in a file called
+Session.vim in the current directory.
+
+Save tmux sessions by running cntrl-b cntrl-s. Restore with cntrl-b cntrl-r.

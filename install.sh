@@ -1,3 +1,4 @@
+#! /bin/bash
 SCRIPTPATH=`pwd`
 
 rm -rf ~/.vim
@@ -20,3 +21,7 @@ git config --global core.excludesfile ~/dotfiles/global_gitignore
 
 # Syntastic dependencies
 sudo npm install -g jshint eslint eslint-plugin-vue
+
+# Tmux resurrect / continuum
+git -C tmux-resurrect pull || git clone https://github.com/tmux-plugins/tmux-resurrect
+git -C tmux-continuum pull || git clone https://github.com/tmux-plugins/tmux-continuum
