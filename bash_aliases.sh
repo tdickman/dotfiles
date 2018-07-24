@@ -191,3 +191,19 @@ function vpnall {
     rm /tmp/vpn
 }
 export -f vpnall
+
+# CFC Shortcuts #
+
+# Decode, edit and save secrets for cfc
+function cfcedit {
+    mkdir -p /tmp/cfcsecrets/
+    secretName=$1
+    ko get secret $secretName -o json > /tmp/cfcsecrets/$secretName.json
+    jq '.data[]' /tmp/cfcsecrets/$secretName.json | cut -d '"' -f 2 | base64 -d > /tmp/cfcsecrets/$secretName-decoded.yaml
+    vim /tmp/cfcsecrets/$secretName-decoded.yaml
+    encodedSecret="$(cat /tmp/cfcsecrets/$secretName-decoded.yaml | base64 -w0)"
+    jq --indent 4 '.data[] = "'"$encodedSecret"'"' /tmp/cfcsecrets/$secretName.json > /tmp/cfcsecrets/$secretName-new.json
+    read -p "Press enter to save changes. Control-c to quit"
+    ko apply -f /tmp/cfcsecrets/$secretName-new.json
+}
+export -f cfcedit
