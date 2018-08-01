@@ -25,3 +25,8 @@ sudo npm install -g jshint eslint eslint-plugin-vue
 # Tmux resurrect / continuum
 git -C tmux-resurrect pull || git clone https://github.com/tmux-plugins/tmux-resurrect
 git -C tmux-continuum pull || git clone https://github.com/tmux-plugins/tmux-continuum
+
+# Install kubetail
+wget https://github.com/johanhaleby/kubetail/raw/master/kubetail -O ~/.local/bin/kubetail
+chmod +x ~/.local/bin/kubetail
+sudo wget https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.bash -O /etc/bash_completion.d/kubetail.bash
