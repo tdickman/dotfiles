@@ -25,6 +25,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'rnestler/michelson.vim'
 Plug 'sjurgemeyer/vimport'
 Plug 'https://github.com/dkprice/vim-easygrep'
+Plug 'https://github.com/tpope/vim-obsession'
 
 call plug#end()
 

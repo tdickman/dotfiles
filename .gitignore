@@ -1,2 +1,4 @@
 *.swp
 *.log
+tmux-resurrect/
+tmux-continuum
