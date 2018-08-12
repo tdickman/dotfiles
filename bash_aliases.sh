@@ -177,6 +177,11 @@ function ssh-yubi {
     ssh -R /run/user/1000/gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
 }
 export -f ssh-yubi
+function ssh-yubi-home {
+    ssh -t $1 "rm /home/tom/.gnupg/S.gpg-agent.ssh"
+    ssh -R /home/tom/.gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
+}
+export -f ssh-yubi-home
 function vpnlocal {
     echo $'vpn\n'$(pass 192.168.1.1/vpn | head -n 1) > /tmp/vpn
     chmod 600 /tmp/vpn
