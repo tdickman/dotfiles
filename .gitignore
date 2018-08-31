@@ -2,3 +2,4 @@
 *.log
 tmux-resurrect/
 tmux-continuum
+.packages/
