@@ -111,7 +111,7 @@ export -f gr
 alias todo='vim ~/todo.txt'
 
 # SSH Tunnel
-function phome { ssh -N -L $1:localhost:$1 -p 2222 home.epicconstructions.com; }
+function pp { ssh -N -L $2:localhost:$2 $1; }
 export phome
 
 # Ctags
