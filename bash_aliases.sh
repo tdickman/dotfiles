@@ -196,3 +196,7 @@ function vpnall {
     rm /tmp/vpn
 }
 export -f vpnall
+
+# Task Warrior
+alias t='task'
+alias to='taskopen'
