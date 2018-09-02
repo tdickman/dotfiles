@@ -8,8 +8,8 @@ ln -s $SCRIPTPATH/bash_aliases.sh ~/.bash_aliases.sh
 ln -s $SCRIPTPATH/bash_shared.sh ~/.bash_shared.sh
 ln -s $SCRIPTPATH/.jshintrc ~/.jshintrc
 ln -s $SCRIPTPATH/.ctags ~/.ctags
-ln -s $SCRIPTPATH/.taskopenrc ~/.taskopenrc
-ln -s $SCRIPTPATH/.taskrc ~/.taskrc
+ln -fs $SCRIPTPATH/.taskopenrc ~/.taskopenrc
+ln -fs $SCRIPTPATH/.taskrc ~/.taskrc
 sudo ln -s $SCRIPTPATH/ksec.py /usr/local/bin/ksec
 sudo chmod +x /usr/local/bin/ksec
 ln -s ~/.vim/vimrc ~/.vimrc
