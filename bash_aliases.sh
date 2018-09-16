@@ -203,3 +203,7 @@ alias to='taskopen'
 
 # Tmux
 alias f='tmux attach -dt f || tmux new-session -s f'
+function sf {
+    ssh -t $1 "tmux attach -dt f || tmux new-session -s f"
+}
+export -f sf
