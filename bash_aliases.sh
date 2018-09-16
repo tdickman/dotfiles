@@ -200,3 +200,6 @@ export -f vpnall
 # Task Warrior
 alias t='task'
 alias to='taskopen'
+
+# Tmux
+alias f='tmux attach -dt f || tmux new-session -s f'
