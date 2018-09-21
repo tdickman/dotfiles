@@ -207,3 +207,9 @@ function sf {
     ssh -t $1 "tmux attach -dt f || tmux new-session -s f"
 }
 export -f sf
+
+# Trigger a rolling deploy after changing secrets
+function kroll {
+    kubectl patch deployment $1 -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+}
+export -f kroll
