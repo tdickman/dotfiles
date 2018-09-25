@@ -104,7 +104,7 @@ export mcd
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 alias g=git
-function gr { grep -r --exclude-dir=node_modules --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
+function gr { grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
 export -f gr
 
 # TODO
@@ -178,8 +178,15 @@ function ssh-yubi {
 }
 export -f ssh-yubi
 function ssh-yubi-home {
-    ssh -t $1 "rm /home/tom/.gnupg/S.gpg-agent.ssh"
+    ssh -t $1 "rm ~/.gnupg/S.gpg-agent.ssh"
     ssh -R /home/tom/.gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
+}
+export -f ssh-yubi-home
+function ssh-yubi-home {
+    ssh -t $1 "rm ~/.gnupg/S.gpg-agent.ssh"
+    home=$(ssh -t $1 "pwd ~" | tr -d '\r')
+    forwardpath="$home/.gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh"
+    ssh -R $forwardpath $1
 }
 export -f ssh-yubi-home
 function vpnlocal {
@@ -208,8 +215,21 @@ function sf {
 }
 export -f sf
 
+# Tmux
+alias w='tmux attach -dt w || tmux new-session -s w'
+function sw {
+    ssh -t tom-foldapp@$1 "tmux attach -dt w || tmux new-session -s w"
+}
+export -f sw
+
 # Trigger a rolling deploy after changing secrets
 function kroll {
     kubectl patch deployment $1 -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
 }
 export -f kroll
+
+alias genpass='cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1'
+function gitprs {
+    git log --pretty="%h - %s" $1..$2 | grep "Merge pull request"
+}
+export -f gitprs

@@ -170,3 +170,7 @@ set foldmethod=syntax
 set foldlevel=99
 
 nmap <C-W>! <Plug>Kwbd
+
+" Put swapfiles in a central location
+set swapfile
+set dir=~/.tmp

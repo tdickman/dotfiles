@@ -1,6 +1,7 @@
 #! /bin/bash
 SCRIPTPATH=`pwd`
 
+mkdir -p ~/.tmp
 rm -rf ~/.vim
 ln -s $SCRIPTPATH/vim ~/.vim
 ln -s $SCRIPTPATH/tmux.conf ~/.tmux.conf
