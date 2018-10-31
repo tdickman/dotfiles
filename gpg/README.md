@@ -116,3 +116,9 @@ Import public key to computers:
 mv /media/... ~/dotfiles/gpg/
 gpg --import my-public-key.asc
 ```
+
+# Enabling Touch Support
+
+Follow [this
+guide](https://ruimarinho.gitbooks.io/yubikey-handbook/content/openpgp/touch-protection/enabling-touch-protection.html)
+to require touch to approve openpgp actions.
