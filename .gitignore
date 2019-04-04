@@ -3,3 +3,4 @@
 tmux-resurrect/
 tmux-continuum
 .packages/
+kube.tmux

@@ -39,6 +39,9 @@ sudo wget https://raw.githubusercontent.com/johanhaleby/kubetail/master/completi
 sudo apt update
 sudo apt install -y taskwarrior
 
+# Install kube context statusbar
+wget https://raw.githubusercontent.com/jonmosco/kube-tmux/master/kube.tmux
+
 # Install task-open
 sudo apt-get install -y libjson-perl
 mkdir -p .packages/
