@@ -174,3 +174,6 @@ nmap <C-W>! <Plug>Kwbd
 " Put swapfiles in a central location
 set swapfile
 set dir=~/.tmp
+
+" ,y -> copy current filename and line number to clipboard
+nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
