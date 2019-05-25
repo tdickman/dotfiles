@@ -1,20 +1,21 @@
 #! /bin/bash
+set -e
 SCRIPTPATH=`pwd`
 
 mkdir -p ~/.tmp
 rm -rf ~/.vim
-ln -s $SCRIPTPATH/vim ~/.vim
-ln -s $SCRIPTPATH/emacs ~/.emacs
-ln -s $SCRIPTPATH/tmux.conf ~/.tmux.conf
-ln -s $SCRIPTPATH/bash_aliases.sh ~/.bash_aliases.sh
-ln -s $SCRIPTPATH/bash_shared.sh ~/.bash_shared.sh
-ln -s $SCRIPTPATH/.jshintrc ~/.jshintrc
-ln -s $SCRIPTPATH/.ctags ~/.ctags
-ln -fs $SCRIPTPATH/.taskopenrc ~/.taskopenrc
-ln -fs $SCRIPTPATH/.taskrc ~/.taskrc
-sudo ln -s $SCRIPTPATH/ksec.py /usr/local/bin/ksec
+ln -sf $SCRIPTPATH/vim ~/.vim
+ln -sf $SCRIPTPATH/emacs ~/.emacs
+ln -sf $SCRIPTPATH/tmux.conf ~/.tmux.conf
+ln -sf $SCRIPTPATH/bash_aliases.sh ~/.bash_aliases.sh
+ln -sf $SCRIPTPATH/bash_shared.sh ~/.bash_shared.sh
+ln -sf $SCRIPTPATH/.jshintrc ~/.jshintrc
+ln -sf $SCRIPTPATH/.ctags ~/.ctags
+ln -sf $SCRIPTPATH/.taskopenrc ~/.taskopenrc
+ln -sf $SCRIPTPATH/.taskrc ~/.taskrc
+sudo ln -sf $SCRIPTPATH/ksec.py /usr/local/bin/ksec
 sudo chmod +x /usr/local/bin/ksec
-ln -s ~/.vim/vimrc ~/.vimrc
+ln -sf ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
 
 # Git aliases
@@ -40,16 +41,20 @@ sudo apt update
 sudo apt install -y taskwarrior
 
 # Install kube context statusbar
-wget https://raw.githubusercontent.com/jonmosco/kube-tmux/master/kube.tmux
+wget -O kube.tmux https://raw.githubusercontent.com/jonmosco/kube-tmux/master/kube.tmux
 
 # Install task-open
 sudo apt-get install -y libjson-perl
 mkdir -p .packages/
 cd .packages/
-git clone https://github.com/ValiValpas/taskopen.git
-cd taskopen
-make PREFIX=/usr
-sudo make PREFIX=/usr install
+if [ ! -d taskopen ]; then
+    git clone https://github.com/ValiValpas/taskopen.git
+    cd taskopen
+    make PREFIX=/usr
+    sudo make PREFIX=/usr install
+fi
+
+cd $SCRIPTPATH
 
 # Install encrypted files
 gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
