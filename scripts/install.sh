@@ -50,3 +50,6 @@ git clone https://github.com/ValiValpas/taskopen.git
 cd taskopen
 make PREFIX=/usr
 sudo make PREFIX=/usr install
+
+# Install encrypted files
+gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
