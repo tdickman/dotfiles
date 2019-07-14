@@ -167,7 +167,7 @@ function yubi-remote-clean {
 export -f yubi-remote-clean
 
 # Mount encrypted dir
-alias mencrypted='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted'
+alias mencrypted='pass show encrypted-dir | head -n 1 | encfs -S ~/Drive/Encrypted ~/Encrypted'
 alias uencrypted='sudo umount ~/Encrypted'
 alias gc='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted && xdg-open Encrypted/giftcards/reselling.ods && echo "Press enter to unmount volume" && read _ && sudo umount ~/Encrypted'
 alias start_torrent="~/dotfiles/start_torrent.sh"
