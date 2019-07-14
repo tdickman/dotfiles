@@ -58,3 +58,6 @@ cd $SCRIPTPATH
 
 # Install encrypted files
 gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
+
+# Install hub
+sudo snap install --classic hub
