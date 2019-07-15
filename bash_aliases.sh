@@ -169,7 +169,7 @@ export -f yubi-remote-clean
 # Mount encrypted dir
 alias mencrypted='pass show encrypted-dir | head -n 1 | encfs -S ~/Drive/Encrypted ~/Encrypted'
 alias uencrypted='sudo umount ~/Encrypted'
-alias gc='pass show encrypted-dir | head -n 1 | encfs -S ~/Dropbox/Encrypted ~/Encrypted && xdg-open Encrypted/giftcards/reselling.ods && echo "Press enter to unmount volume" && read _ && sudo umount ~/Encrypted'
+alias gc='pass show encrypted-dir | head -n 1 | encfs -S ~/Drive/Encrypted ~/Encrypted && xdg-open Encrypted/giftcards/reselling.ods && echo "Press enter to unmount volume" && read _ && sudo umount ~/Encrypted'
 alias start_torrent="~/dotfiles/start_torrent.sh"
 alias dc="docker-compose"
 function ssh-yubi {
@@ -192,14 +192,14 @@ export -f ssh-yubi-home
 function vpnlocal {
     echo $'vpn\n'$(pass 192.168.1.1/vpn | head -n 1) > /tmp/vpn
     chmod 600 /tmp/vpn
-    sudo openvpn --config ~/Dropbox/VPN/home.epicconstructions.com.local.ovpn --auth-user-pass /tmp/vpn
+    sudo openvpn --config ~/Drive/VPN/home.epicconstructions.com.local.ovpn --auth-user-pass /tmp/vpn
     rm /tmp/vpn
 }
 export -f vpnlocal
 function vpnall {
     echo $'vpn\n'$(pass 192.168.1.1/vpn | head -n 1) > /tmp/vpn
     chmod 600 /tmp/vpn
-    sudo openvpn --config ~/Dropbox/VPN/home.epicconstructions.com.all.ovpn --auth-user-pass /tmp/vpn
+    sudo openvpn --config ~/Drive/VPN/home.epicconstructions.com.all.ovpn --auth-user-pass /tmp/vpn
     rm /tmp/vpn
 }
 export -f vpnall
