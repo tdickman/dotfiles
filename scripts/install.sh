@@ -2,6 +2,9 @@
 set -e
 SCRIPTPATH=`pwd`
 
+# Install
+sudo apt install encfs
+
 mkdir -p ~/.tmp
 rm -rf ~/.vim
 ln -sf $SCRIPTPATH/vim ~/.vim
