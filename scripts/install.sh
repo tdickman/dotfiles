@@ -3,7 +3,7 @@ set -e
 SCRIPTPATH=`pwd`
 
 # Install
-sudo apt install encfs
+sudo apt install encfs silversearcher-ag
 
 mkdir -p ~/.tmp
 rm -rf ~/.vim
