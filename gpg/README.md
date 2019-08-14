@@ -75,7 +75,7 @@ Update key expiration:
 ```
 gpg --import <master-key>
 gpg --import <sub-keys>
-gpg --list-secret-keys
+gpg --list-secret-keys     // note that the only key listed may be the master key at first; once you run "--edit-key" on the master key the others will show up
 gpg --edit-key 0x...
 # Repeat for each subkey
 key <n>
@@ -92,9 +92,9 @@ gpg2 -a --export-secret-subkeys 0x2896DB4A0E427716 >> /media/BACKUP/<new-date>28
 
 Import to yubikey:
 
-Note: This 'moves' the keys from the computer to the smartcard. We will need to
-reboot and repeat the entire process restoring from the backed up keys rather
-than changing the expiration on the existing ones for the second device.
+Note: This 'moves' the keys from the computer to the smartcard. After they have been "moved" they are no longer able to be loaded
+to a secondary card. We will need to reboot and repeat the entire process, restoring from the backed up keys we just created. This
+keeps us from having to run through the key refresh cycle a second time for the backup smartcard.
 
 ```
 gpg --edit-key 0x...
@@ -110,11 +110,16 @@ Export public key:
 gpg -a --export 0x... > my-public-key.asc
 ```
 
-Import public key to computers:
+Import public key to computers (yes, this does necessitate an additional USB drive in order to keep the backups air-gapped):
 
 ```
 mv /media/... ~/dotfiles/gpg/
 gpg --import my-public-key.asc
+```
+Alternatively, upload the public key to github, then run this command (same as above):
+
+```
+curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-key.asc" | gpg2 --import
 ```
 
 # Enabling Touch Support
