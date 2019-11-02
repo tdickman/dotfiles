@@ -59,3 +59,6 @@ mem()
 
 source ~/.bash_aliases.sh
 source <(kubectl completion bash | sed 's/kubectl/k/g')
+
+GPG_TTY=`tty`
+export GPG_TTY

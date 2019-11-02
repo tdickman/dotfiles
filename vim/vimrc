@@ -26,6 +26,7 @@ Plug 'rnestler/michelson.vim'
 Plug 'sjurgemeyer/vimport'
 Plug 'https://github.com/dkprice/vim-easygrep'
 Plug 'https://github.com/tpope/vim-obsession'
+Plug 'https://github.com/jamessan/vim-gnupg'
 
 call plug#end()
 
