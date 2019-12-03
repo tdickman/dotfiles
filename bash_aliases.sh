@@ -233,3 +233,8 @@ function gitprs {
     git log --pretty="%h - %s" $1..$2 | grep "Merge pull request"
 }
 export -f gitprs
+
+function freplace {
+    egrep --exclude-dir=.git -lRZ $1 . | xargs -0 -l sed -i -e 's/'$1/$2'/g'
+}
+export -f freplace
