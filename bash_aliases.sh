@@ -238,3 +238,8 @@ function freplace {
     egrep --exclude-dir=.git -lRZ $1 . | xargs -0 -l sed -i -e 's/'$1/$2'/g'
 }
 export -f freplace
+
+function viewcert {
+    curl -v $1  2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+}
+export -f viewcert
