@@ -240,6 +240,6 @@ function freplace {
 export -f freplace
 
 function viewcert {
-    curl -v $1  2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
+    curl -k -v $1  2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
 }
 export -f viewcert
