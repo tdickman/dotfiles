@@ -15,39 +15,15 @@ Ubuntu:
     sudo -H pip3 install jedi
 
 # Run the following for each project
+
+```
 ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))") # https://www.fusionbox.com/blog/detail/navigating-your-django-project-with-vim-and-ctags/590/
+```
 
 # Git config
+
+```
 git config --global commit.gpgsign true  # Sign commits
-
-# Kotlin
-
-This project includes a few plugins to help with kotlin + vim. To use syntastic
-with a kotlin project you need to to the following to enable sytastic:
-
-https://github.com/francis36012/ktsyntastic
-
-Add the following to build.gradle:
-
-```
-buildscript {
-  repositories {
-    maven {
-      url "https://plugins.gradle.org/m2/"
-    }
-  }
-  dependencies {
-    classpath "gradle.plugin.com.fagyapong.ktsyntastic:ktsyntastic:0.3.1"
-  }
-}
-
-apply plugin: "com.fagyapong.ktsyntastic"
-```
-
-Then run the following to generate a .ale_kotlinc_config file:
-
-```
-./gradlew kotlinAle
 ```
 
 # Ubuntu general settings

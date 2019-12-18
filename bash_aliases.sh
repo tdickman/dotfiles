@@ -243,3 +243,25 @@ function viewcert {
     curl -k -v $1  2>&1 | awk 'BEGIN { cert=0 } /^\* SSL connection/ { cert=1 } /^\*/ { if (cert) print }'
 }
 export -f viewcert
+
+# Usage: `kshellplus app`
+function kshellplus {
+    POD=`kubectl get pod -l app=$1 --no-headers | grep Running | head -1 | cut -f 1 -d " "`
+    kubectl exec -it $POD python manage.py shell_plus
+}
+export -f kshellplus
+function ksh {
+    POD=`kubectl get pod -l app=$1 --no-headers | grep Running | head -1 | cut -f 1 -d " "`
+    if [[ -z "$2" ]]; then
+        kubectl exec -it $POD sh
+    else
+        kubectl exec -it $POD "${@:2}"
+    fi
+}
+export -f ksh
+
+# Scale all deployments to the given number of replicas
+function kscale {
+    kubectl scale deployment/$1 --replicas $2
+}
+export -f kscale
