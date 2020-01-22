@@ -96,9 +96,7 @@ Note: This 'moves' the keys from the computer to the smartcard. After they have 
 to a secondary card. We will need to reboot and repeat the entire process, restoring from the backed up keys we just created. This
 keeps us from having to run through the key refresh cycle a second time for the backup smartcard.
 
-Additional Note: It may not be necessary to reload the subkeys to the smartcard device. Renewing the public key on the air gapped 
-device and reloading it into gpg on each device may be sufficient. Next time I go through the renewal process I will try to update
-this not accordingly.
+Additional Note: It's not necessary to copy the updated private keys to smart cards. Just updating the public key is sufficient.
 
 ```
 gpg --edit-key 0x...
