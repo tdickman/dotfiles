@@ -29,6 +29,11 @@ Plug 'https://github.com/dkprice/vim-easygrep'
 Plug 'https://github.com/tpope/vim-obsession'
 Plug 'https://github.com/jamessan/vim-gnupg'
 
+" Vim python lsp
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanolsonx/vim-lsp-python'
+
 call plug#end()
 
 " Fugitive

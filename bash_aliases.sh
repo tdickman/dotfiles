@@ -104,7 +104,7 @@ export mcd
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 alias g=git
-function gr { grep -r --exclude-dir=node_modules --exclude-dir=venv --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
+function gr { grep -r --exclude-dir=.terraform --exclude-dir=node_modules --exclude-dir=venv --exclude=*.backup --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
 export -f gr
 
 # TODO
@@ -265,3 +265,9 @@ function kscale {
     kubectl scale deployment/$1 --replicas $2
 }
 export -f kscale
+
+# Setup symlink to poetry virtual environment to make ALE happy
+function poetryenv {
+    ln -s $(poetry env list --full-path | head -n 1 | awk '{print $1;}') $(pwd)/.venv
+}
+export -f poetryenv
