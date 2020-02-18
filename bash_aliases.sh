@@ -300,14 +300,34 @@ EOF
     krc kind-kind a-kind
     skaffold config set default-repo localhost:5000
     skaffold config set local-cluster false
+
+    # Start ingress-nginx
+    # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
+    # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+    # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/baremetal/service-nodeport.yaml
+    # for port in 80 443
+    # do
+    #     node_port=$(kubectl get service -n ingress-nginx ingress-nginx -o=jsonpath="{.spec.ports[?(@.port == ${port})].nodePort}")
+
+    #     docker run -d --name kind-proxy-${port} \
+    #       --publish 127.0.0.1:${port}:${port} \
+    #       --link kind-control-plane:target \
+    #       alpine/socat -dd \
+    #       tcp-listen:${port},fork,reuseaddr tcp-connect:target:${node_port}
+    # done
 }
 export -f kindup
 
 function kinddown {
-    kind delete cluster
+    # docker stop kind-proxy-80
+    # docker rm kind-proxy-80
+    # docker stop kind-proxy-443
+    # docker rm kind-proxy-443
     reg_name='kind-registry'
     docker stop $reg_name
     docker rm $reg_name
+
+    kind delete cluster
     kdc a-kind || true
 }
 export -f kinddown
