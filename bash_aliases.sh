@@ -298,8 +298,8 @@ containerdConfigPatches:
 EOF
 
     krc kind-kind a-kind
-    kubectl config set default-report localhost:5000
-    kubectl config set local-cluster false
+    skaffold config set default-repo localhost:5000
+    skaffold config set local-cluster false
 }
 export -f kindup
 
