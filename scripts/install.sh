@@ -17,6 +17,7 @@ ln -sf $SCRIPTPATH/.jshintrc ~/.jshintrc
 ln -sf $SCRIPTPATH/.ctags ~/.ctags
 ln -sf $SCRIPTPATH/.taskopenrc ~/.taskopenrc
 ln -sf $SCRIPTPATH/.taskrc ~/.taskrc
+ln -sf /run/user/$UID/gnupg ~/.gnupg-run
 sudo ln -sf $SCRIPTPATH/ksec.py /usr/local/bin/ksec
 sudo chmod +x /usr/local/bin/ksec
 ln -sf ~/.vim/vimrc ~/.vimrc
