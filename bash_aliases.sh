@@ -174,7 +174,7 @@ alias start_torrent="~/dotfiles/start_torrent.sh"
 alias dc="docker-compose"
 function ssh-yubi {
     ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
-    ssh -R /run/user/1000/gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
+    ssh -o StreamLocalBindUnlink=yes -R /run/user/1000/gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
 }
 export -f ssh-yubi
 function ssh-yubi-home {
@@ -354,3 +354,9 @@ tmux-attach() {
 export -f tmux-attach
 tmux-ssh() { ssh "$@" -A -X -t 'PS1=tmux-ssh- ; . ~/dotfiles/bash_aliases.sh ; tmux-x-attach'; tput init; }
 export -f tmux-ssh
+sty() {
+    # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
+    # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
+    tmux-ssh -R /run/user/1000/gnupg/S.gpg-agent.ssh:/run/user/1000/gnupg/S.gpg-agent.ssh $1
+}
+export -f sty
