@@ -21,6 +21,11 @@ sudo chmod +x /usr/local/bin/ksec
 ln -sf ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
 
+# GPG
+sudo apt-get install gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcscd scdaemon libksba8
+curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-key.asc" | gpg2 --import
+printf 'default-cache-ttl 600\nmax-cache-ttl 7200\nenable-ssh-support\n' > ~/.gnupg/gpg-agent.conf
+
 # Git aliases
 git config --global alias.co checkout
 git config --global alias.ci commit
