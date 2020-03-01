@@ -81,5 +81,11 @@ sudo add-apt-repository "deb https://xpra.org/ $(lsb_release -c -s) main"
 sudo apt-get install xpra
 sudo apt install xpra
 
+# Setup docker
+sudo snap install docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
 # Install encrypted files
 gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
