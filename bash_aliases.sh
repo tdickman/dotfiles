@@ -331,3 +331,26 @@ function kinddown {
     kdc a-kind || true
 }
 export -f kinddown
+
+tmux-x-attach() {
+   ps -f -u $USER | grep -v grep | grep -q 'xpra start' || xpra start :9
+   xpra attach :9 --opengl=no > /tmp/xpra-attach.log 2>&1 &
+   DISPLAY=:9 tmux-attach "$@"
+   xpra detach :9
+}
+export -f tmux-x-attach
+
+tmux-attach() {
+   case $(tmux list-sessions 2>/dev/null | wc -l) in
+      0) tmux ;;
+      1) tmux attach ;;
+      *)
+         tmux list-sessions 
+         read -n 1 -p "Select command: " N < /dev/tty > /dev/tty;
+         tmux attach -t $N
+         ;;
+   esac
+}
+export -f tmux-attach
+tmux-ssh() { ssh "$@" -A -X -t 'PS1=tmux-ssh- ; . ~/dotfiles/bash_aliases.sh ; tmux-x-attach'; tput init; }
+export -f tmux-ssh

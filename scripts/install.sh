@@ -66,3 +66,12 @@ gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
 sudo snap install --classic hub
 
 sudo snap install pyls
+
+# https://unix.stackexchange.com/questions/251595/vim-losing-ability-to-copy-to-client-clipoard-over-ssh
+# add GPG key
+wget -q https://xpra.org/gpg.asc -O- | sudo apt-key add -
+# add XPRA repository
+sudo add-apt-repository "deb https://xpra.org/ $(lsb_release -c -s) main"
+# install XPRA package
+sudo apt-get install xpra
+sudo apt install xpra
