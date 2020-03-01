@@ -3,7 +3,8 @@ set -e
 SCRIPTPATH=`pwd`
 
 # Install
-sudo apt install encfs silversearcher-ag
+sudo apt install encfs silversearcher-ag npm
+sudo snap install pyls
 
 mkdir -p ~/.tmp
 rm -rf ~/.vim
@@ -35,6 +36,8 @@ git -C tmux-resurrect pull || git clone https://github.com/tmux-plugins/tmux-res
 git -C tmux-continuum pull || git clone https://github.com/tmux-plugins/tmux-continuum
 
 # Install kubetail
+mkdir -p ~/.local/
+mkdir -p ~/.local/bin/
 wget https://github.com/johanhaleby/kubetail/raw/master/kubetail -O ~/.local/bin/kubetail
 chmod +x ~/.local/bin/kubetail
 sudo wget https://raw.githubusercontent.com/johanhaleby/kubetail/master/completion/kubetail.bash -O /etc/bash_completion.d/kubetail.bash
@@ -59,13 +62,8 @@ fi
 
 cd $SCRIPTPATH
 
-# Install encrypted files
-gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
-
 # Install hub
 sudo snap install --classic hub
-
-sudo snap install pyls
 
 # https://unix.stackexchange.com/questions/251595/vim-losing-ability-to-copy-to-client-clipoard-over-ssh
 # add GPG key
@@ -75,3 +73,6 @@ sudo add-apt-repository "deb https://xpra.org/ $(lsb_release -c -s) main"
 # install XPRA package
 sudo apt-get install xpra
 sudo apt install xpra
+
+# Install encrypted files
+gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
