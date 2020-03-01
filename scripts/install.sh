@@ -3,7 +3,8 @@ set -e
 SCRIPTPATH=`pwd`
 
 # Install
-sudo apt install encfs silversearcher-ag npm
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt install encfs silversearcher-ag npm vim-gtk3
 sudo snap install pyls
 
 mkdir -p ~/.tmp
