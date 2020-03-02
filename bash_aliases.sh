@@ -357,6 +357,6 @@ export -f tmux-ssh
 sty() {
     # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
     # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
-    tmux-ssh -R /home/tom/.gnupg-run/S.gpg-agent.ssh:/home/tom/.gnupg-run/S.gpg-agent.ssh $1
+    tmux-ssh -R /home/tom/.gnupg-run/S.gpg-agent:/home/tom/.gnupg-run/S.gpg-agent -R /home/tom/.gnupg-run/S.gpg-agent.ssh:/home/tom/.gnupg-run/S.gpg-agent.ssh $1
 }
 export -f sty
