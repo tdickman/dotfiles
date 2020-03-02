@@ -82,7 +82,7 @@ sudo apt-get install xpra
 sudo apt install xpra
 
 # Setup docker
-sudo snap install docker
+sudo apt install docker.io
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
