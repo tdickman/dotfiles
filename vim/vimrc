@@ -185,3 +185,6 @@ set dir=~/.tmp
 
 " ,y -> copy current filename and line number to clipboard
 nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
+
+" Python lsp
+let g:lsp_diagnostics_enabled = 0
