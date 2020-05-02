@@ -4,7 +4,7 @@ SCRIPTPATH=`pwd`
 
 # Install
 sudo add-apt-repository ppa:jonathonf/vim
-sudo apt install encfs silversearcher-ag vim-gtk3
+sudo apt install -y encfs silversearcher-ag vim-gtk3
 sudo snap install pyls
 
 mkdir -p ~/.tmp
@@ -25,7 +25,7 @@ ln -sf ~/.vim/vimrc ~/.vimrc
 vim +PlugInstall +qall
 
 # GPG
-sudo apt-get install gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcscd scdaemon libksba8
+sudo apt-get install -y gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcscd scdaemon libksba8
 curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-key.asc" | gpg2 --import
 printf 'default-cache-ttl 600\nmax-cache-ttl 7200\nenable-ssh-support\n' > ~/.gnupg/gpg-agent.conf
 
@@ -33,10 +33,16 @@ printf 'default-cache-ttl 600\nmax-cache-ttl 7200\nenable-ssh-support\n' > ~/.gn
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.st status
+git config --global user.email "tdickman@gmail.com"
+git config --global user.name "Tom Dickman"
 git config --global core.excludesfile ~/dotfiles/global_gitignore
 
 # Syntastic dependencies
+sudo apt install -y npm
 sudo npm install -g jshint eslint eslint-plugin-vue
+
+# Pass
+sudo apt install -y pass
 
 # Tmux resurrect / continuum
 git -C tmux-resurrect pull || git clone https://github.com/tmux-plugins/tmux-resurrect
@@ -78,14 +84,12 @@ wget -q https://xpra.org/gpg.asc -O- | sudo apt-key add -
 # add XPRA repository
 sudo add-apt-repository "deb https://xpra.org/ $(lsb_release -c -s) main"
 # install XPRA package
-sudo apt-get install xpra
-sudo apt install xpra
+sudo apt install -y xpra
 
 # Setup docker
-sudo apt install docker.io
-sudo groupadd docker
+sudo apt install -y docker.io
+sudo groupadd docker || true
 sudo usermod -aG docker $USER
-newgrp docker
 
 # Install encrypted files
 gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
