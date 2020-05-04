@@ -338,7 +338,7 @@ tmux-x-attach() {
    ps -f -u $USER | grep -v grep | grep -q 'xpra start' || xpra start :$DISPLAY_ID
    xpra attach :$DISPLAY_ID --opengl=no > /tmp/xpra-attach-$DISPLAY_ID.log 2>&1 &
    DISPLAY=:$DISPLAY_ID tmux-attach "$@"
-   xpra detach :DISPLAY_ID
+   xpra detach :$DISPLAY_ID
 }
 export -f tmux-x-attach
 
