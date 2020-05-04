@@ -339,7 +339,7 @@ tmux-x-attach() {
    xpra attach :$DISPLAY_ID --opengl=no > /tmp/xpra-attach.log 2>&1 &
    DISPLAY=:$DISPLAY_ID tmux-attach "$@"
    # xpra detach :DISPLAY_ID
-   xpra stop :$DISPLAY_ID
+   xpra stop
 }
 export -f tmux-x-attach
 
