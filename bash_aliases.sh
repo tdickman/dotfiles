@@ -359,6 +359,8 @@ export -f tmux-ssh
 sty() {
     # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
     # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
+    # Make sure gpg-agent is running locally
+    gpg -K > /dev/null
     REMOTE_USERNAME=$(echo $1 | awk -F "@" '{print $1}')
     HOSTNAME=$(echo $1 | awk -F "@" '{print $2}')
     if [ "$HOSTNAME" == "" ]; then REMOTE_USERNAME="tom"; fi
