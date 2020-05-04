@@ -333,10 +333,13 @@ function kinddown {
 export -f kinddown
 
 tmux-x-attach() {
-   ps -f -u $USER | grep -v grep | grep -q 'xpra start' || xpra start :9
-   xpra attach :9 --opengl=no > /tmp/xpra-attach.log 2>&1 &
-   DISPLAY=:9 tmux-attach "$@"
-   xpra detach :9
+   DISPLAY_ID=9
+   # if [ "$USER" == "tom" ]; then DISPLAY_ID=11; fi
+   ps -f -u $USER | grep -v grep | grep -q 'xpra start' || xpra start :$DISPLAY_ID
+   xpra attach :$DISPLAY_ID --opengl=no > /tmp/xpra-attach.log 2>&1 &
+   DISPLAY=:$DISPLAY_ID tmux-attach "$@"
+   # xpra detach :DISPLAY_ID
+   xpra stop :$DISPLAY_ID
 }
 export -f tmux-x-attach
 
@@ -357,6 +360,9 @@ export -f tmux-ssh
 sty() {
     # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
     # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
-    tmux-ssh -R /home/tom/.gnupg-run/S.gpg-agent:/home/tom/.gnupg-run/S.gpg-agent -R /home/tom/.gnupg-run/S.gpg-agent.ssh:/home/tom/.gnupg-run/S.gpg-agent.ssh $1
+    REMOTE_USERNAME=$(echo $1 | awk -F "@" '{print $1}')
+    HOSTNAME=$(echo $1 | awk -F "@" '{print $2}')
+    if [ "$HOSTNAME" == "" ]; then REMOTE_USERNAME="tom"; fi
+    tmux-ssh -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
 }
 export -f sty
