@@ -35,7 +35,13 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'ryanolsonx/vim-lsp-python'
 " Plug 'zxqfl/tabnine-vim'
 
+Plug 'psf/black', { 'branch': '19.10b0' }
+
 call plug#end()
+
+" Black
+let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
+" autocmd BufWritePost *.py execute ':Black'
 
 " Fugitive
 call pathogen#infect()
