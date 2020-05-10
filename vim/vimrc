@@ -35,7 +35,18 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'ryanolsonx/vim-lsp-python'
 " Plug 'zxqfl/tabnine-vim'
 
+" https://github.com/roxma/vim-tmux-clipboard
+" https://www.reddit.com/r/vim/comments/7tt4ts/painless_copy_paste_between_tmux_vim_and_system/dtgwdbk/
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'https://github.com/roxma/vim-tmux-clipboard.git'
+
+Plug 'psf/black', { 'branch': '19.10b0' }
+
 call plug#end()
+
+" Black
+let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
+" autocmd BufWritePost *.py execute ':Black'
 
 " Fugitive
 call pathogen#infect()
