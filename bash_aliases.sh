@@ -367,3 +367,8 @@ sty() {
     tmux-ssh -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
 }
 export -f sty
+
+function gpgencrypt() {
+    gpg --output $1.gpg --encrypt --recipient tdickman@gmail.com $1
+}
+export -f gpgencrypt
