@@ -367,6 +367,18 @@ sty() {
     tmux-ssh -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
 }
 export -f sty
+gpgforward() {
+    # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
+    # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
+    # Make sure gpg-agent is running locally
+    gpg -K > /dev/null
+    REMOTE_USERNAME=$(echo $1 | awk -F "@" '{print $1}')
+    HOSTNAME=$(echo $1 | awk -F "@" '{print $2}')
+    if [ "$HOSTNAME" == "" ]; then REMOTE_USERNAME="tom"; fi
+    ssh $1 killall gpg-agent
+    ssh -N -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
+}
+export -f gpgforward
 
 function gpgencrypt() {
     gpg --output $1.gpg --encrypt --recipient tdickman@gmail.com $1
