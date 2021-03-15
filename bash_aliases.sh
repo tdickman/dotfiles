@@ -384,3 +384,13 @@ function gpgencrypt() {
     gpg --output $1.gpg --encrypt --recipient tdickman@gmail.com $1
 }
 export -f gpgencrypt
+
+function work() {
+    mosh tom-fold@stargate tmux attach
+}
+export -f work
+
+function personal() {
+    mosh tom@stargate tmux attach
+}
+export -f personal
