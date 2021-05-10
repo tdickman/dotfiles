@@ -4,8 +4,7 @@ call plug#begin('~/.vim/plugged')
 " Plugins
 Plug 'https://github.com/vim-scripts/Conque-Shell.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'git://github.com/tpope/vim-fugitive.git'
 Plug 'git://github.com/airblade/vim-gitgutter.git'
@@ -47,8 +46,8 @@ Plug 'https://github.com/roxma/vim-tmux-clipboard.git'
 call plug#end()
 
 " Black
-let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
-" autocmd BufWritePost *.py execute ':Black'
+" let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
+autocmd BufWritePost *.py silent! execute ':Black'
 
 " Fugitive
 call pathogen#infect()
@@ -132,7 +131,7 @@ let g:ale_completion_enabled = 1
 let g:ale_python_flake8_args="--ignore=E501,E225"
 let g:ale_python_mypy_options="--ignore-missing-imports"
 let g:ale_linters = {'python': ['pylint'], 'javascript': ['eslint'], 'javascriptreact': ['eslint']}
-let g:ale_fixers = {'javascript': ['eslint'], 'javascriptreact': ['eslint'], 'python': ['black']}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['eslint'], 'javascriptreact': ['eslint'], 'python': ['black']}
 let g:ale_fix_on_save = 1
 
 " Vimport
@@ -155,7 +154,7 @@ function! DoWindowSwap()
     "Switch to dest and shuffle source->dest
     exe curNum . "wincmd w"
     "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf 
+    exe 'hide buf' markedBuf
 endfunction
 
 map <leader>mw :call MarkWindowSwap()<CR>
