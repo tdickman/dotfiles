@@ -7,6 +7,8 @@ call plug#begin()
   " https://www.reddit.com/r/vim/comments/7tt4ts/painless_copy_paste_between_tmux_vim_and_system/dtgwdbk/
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'https://github.com/roxma/vim-tmux-clipboard.git'
+  Plug 'https://github.com/dense-analysis/ale.git'
+  Plug 'https://github.com/tpope/vim-obsession'
 call plug#end()
 
 filetype plugin indent on
@@ -28,6 +30,7 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:copilot_filetypes = {
 \    '*': v:false,
 \    'python': v:true,
+\    'vim': v:true,
 \}
 
 " Put swapfiles in a central location
