@@ -10,6 +10,7 @@ sudo snap install pyls
 mkdir -p ~/.tmp
 rm -rf ~/.vim
 ln -sf $SCRIPTPATH/vim ~/.vim
+ln -sf $SCRIPTPATH/nvim ~/.config/nvim
 ln -sf $SCRIPTPATH/emacs ~/.emacs
 ln -sf $SCRIPTPATH/tmux.conf ~/.tmux.conf
 ln -sf $SCRIPTPATH/bash_aliases.sh ~/.bash_aliases.sh
@@ -95,3 +96,16 @@ sudo usermod -aG docker $USER
 
 # Install encrypted files
 gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
+
+# Neovim
+sudo apt install -y ripgrep
+wget -O /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
+sudo dpkg -i /tmp/nvim-linux64.deb
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
+
+# Install fonts for editor
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
+unzip DroidSansMono.zip -d ~/.fonts
+fc-cache -fv
+# Now change font in terminal

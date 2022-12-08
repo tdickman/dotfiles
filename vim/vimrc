@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 " Plugins
 Plug 'https://github.com/vim-scripts/Conque-Shell.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/preservim/nerdtree.git'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'git://github.com/tpope/vim-fugitive.git'
@@ -33,6 +33,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'ryanolsonx/vim-lsp-python'
 " Plug 'zxqfl/tabnine-vim'
+Plug 'https://github.com/github/copilot.vim.git'
 
 " Plug 'vim-airline/vim-airline'
 
@@ -41,12 +42,12 @@ Plug 'ryanolsonx/vim-lsp-python'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'https://github.com/roxma/vim-tmux-clipboard.git'
 
-" Plug 'psf/black', { 'branch': '19.10b0' }
+Plug 'psf/black', { 'branch': '22.3.0' }
 
 call plug#end()
 
 " Black
-" let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
+let g:black_virtualenv = "~/dotfiles/vim/pyvenv/black"
 autocmd BufWritePost *.py silent! execute ':Black'
 
 " Fugitive
@@ -131,7 +132,7 @@ let g:ale_completion_enabled = 1
 let g:ale_python_flake8_args="--ignore=E501,E225"
 let g:ale_python_mypy_options="--ignore-missing-imports"
 let g:ale_linters = {'python': ['pylint'], 'javascript': ['eslint'], 'javascriptreact': ['eslint']}
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['eslint'], 'javascriptreact': ['eslint'], 'python': ['black']}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['eslint'], 'python': ['black']}
 let g:ale_fix_on_save = 1
 
 " Vimport
@@ -203,3 +204,8 @@ nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
 
 " Python lsp
 let g:lsp_diagnostics_enabled = 0
+
+let g:copilot_filetypes = {
+\    '*': v:false,
+\    'python': v:true,
+\}
