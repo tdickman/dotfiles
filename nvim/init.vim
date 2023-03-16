@@ -9,6 +9,9 @@ call plug#begin()
   Plug 'https://github.com/roxma/vim-tmux-clipboard.git'
   Plug 'https://github.com/dense-analysis/ale.git'
   Plug 'https://github.com/tpope/vim-obsession'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'MunifTanjim/nui.nvim'
+  Plug 'dpayne/CodeGPT.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -73,3 +76,9 @@ autocmd Filetype scss setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype vue setlocal ts=2 sw=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
+
+let g:codegpt_enable = {
+\  'tests': {
+\    'python': 'Subclass the django.test.TestCase class.',
+\  },
+\}
