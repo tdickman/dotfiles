@@ -25,7 +25,7 @@ function kup {
 
     # Generate a uuid for the build process
     uuid=$(uuidgen)
-    
+
     docker build -t gcr.io/labs-sandbox/${project}:${uuid} .
     gcloud docker push gcr.io/labs-sandbox/${project}:${uuid}
     sed "s/IMAGENAME/gcr.io\/labs-sandbox\/${project}:${uuid}/g" controller.yaml | kubectl apply -f -
@@ -42,30 +42,30 @@ alias krc='kubectl config rename-context $1 $2'
 alias kdc='kubectl config delete-context $1'
 alias kdown="kubectl delete -f ."
 
-transfer() { 
+transfer() {
     # check arguments
-    if [ $# -eq 0 ]; 
-    then 
+    if [ $# -eq 0 ];
+    then
         echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"
         return 1
     fi
 
     # get temporarily filename, output is written to this file show progress can be showed
     tmpfile=$( mktemp -t transferXXX )
-    
+
     # upload stdin or file
     file=$1
 
-    if tty -s; 
-    then 
-        basefile=$(basename "$file" | sed -e 's/[^a-zA-Z0-9._-]/-/g') 
+    if tty -s;
+    then
+        basefile=$(basename "$file" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
 
         if [ ! -e $file ];
         then
             echo "File $file doesn't exists."
             return 1
         fi
-        
+
         if [ -d $file ];
         then
             # zip directory and transfer
@@ -77,11 +77,11 @@ transfer() {
             # transfer file
             curl --progress-bar --upload-file "$file" "https://transfer.sh/$basefile" >> $tmpfile
         fi
-    else 
+    else
         # transfer pipe
         curl --progress-bar --upload-file "-" "https://transfer.sh/$file" >> $tmpfile
     fi
-   
+
     # cat output link
     cat $tmpfile
 
@@ -104,7 +104,7 @@ export mcd
 color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 alias g=git
-function gr { grep -r --exclude-dir=.terraform --exclude-dir=node_modules --exclude-dir=venv --exclude=*.backup --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
+function gr { grep -r -i --exclude-dir=.terraform --exclude-dir=node_modules --exclude-dir=venv --exclude=*.backup --exclude=*.pyc --exclude=*.swp --exclude-dir=.mypy_cache --exclude=tags "$1" *; }
 export -f gr
 
 # TODO
@@ -291,7 +291,7 @@ function kindup {
 cat <<EOF | kind create cluster --name "${KIND_CLUSTER_NAME}" --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-containerdConfigPatches: 
+containerdConfigPatches:
 - |-
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:${reg_port}"]
     endpoint = ["http://${reg_ip}:${reg_port}"]
@@ -347,7 +347,7 @@ tmux-attach() {
       0) tmux ;;
       1) tmux attach ;;
       *)
-         tmux list-sessions 
+         tmux list-sessions
          read -n 1 -p "Select command: " N < /dev/tty > /dev/tty;
          tmux attach -t $N
          ;;

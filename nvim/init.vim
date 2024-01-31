@@ -12,6 +12,8 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'dpayne/CodeGPT.nvim'
+  " Plug 'git://github.com/tpope/vim-fugitive.git'
+  "Plug 'jellydn/CopilotChat.nvim'
 call plug#end()
 
 filetype plugin indent on
