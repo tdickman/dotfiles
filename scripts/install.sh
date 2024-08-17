@@ -2,6 +2,11 @@
 set -e
 SCRIPTPATH=`pwd`
 
+# Install <LeftMouse>
+pyenv install 3.12
+pyenv virtualenv 3.12 neovim3
+~/.pyenv/versions/neovim3/bin/python -m pip install pynvim python-dotenv requests prompt-toolkit tiktoken
+
 # Install
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt install -y encfs silversearcher-ag vim-gtk3

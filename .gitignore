@@ -5,3 +5,4 @@ tmux-continuum
 .packages/
 kube.tmux
 vim/pyvenv
+nvim/rplugin/

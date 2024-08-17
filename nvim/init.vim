@@ -12,8 +12,8 @@ call plug#begin()
   Plug 'nvim-lua/plenary.nvim'
   Plug 'MunifTanjim/nui.nvim'
   Plug 'dpayne/CodeGPT.nvim'
-  " Plug 'git://github.com/tpope/vim-fugitive.git'
-  "Plug 'jellydn/CopilotChat.nvim'
+  Plug 'git://github.com/tpope/vim-fugitive.git'
+  Plug 'jellydn/CopilotChat.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -84,3 +84,12 @@ let g:codegpt_enable = {
 \    'python': 'Subclass the django.test.TestCase class.',
 \  },
 \}
+
+lua << EOF
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
+EOF
+
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
