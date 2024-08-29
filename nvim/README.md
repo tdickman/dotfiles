@@ -1,5 +1,4 @@
-# CopilotChat
+# 💤 LazyVim
 
-Had to install manually for some reason. Followed guide in
-[here](https://github.com/jellydn/CopilotChat.nvim) instead of using Plug.
-Otherwise I installed it, and the command didn't seem to exist.
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
