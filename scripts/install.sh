@@ -35,6 +35,11 @@ sudo apt-get install -y gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcsc
 curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-key.asc" | gpg2 --import
 printf 'default-cache-ttl 600\nmax-cache-ttl 7200\nenable-ssh-support\n' > ~/.gnupg/gpg-agent.conf
 
+# Nvim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim +PlugInstall +qall
+
 pip3 install black
 
 # Git aliases
