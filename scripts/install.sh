@@ -3,14 +3,14 @@ set -e
 SCRIPTPATH=`pwd`
 
 # Install <LeftMouse>
-pyenv install 3.12
-pyenv virtualenv 3.12 neovim3
-~/.pyenv/versions/neovim3/bin/python -m pip install pynvim python-dotenv requests prompt-toolkit tiktoken
+# pyenv install 3.12
+# pyenv virtualenv 3.12 neovim3
+# ~/.pyenv/versions/neovim3/bin/python -m pip install pynvim python-dotenv requests prompt-toolkit tiktoken
 
 # Install
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt install -y encfs silversearcher-ag vim-gtk3
-sudo snap install pyls
+pipx install python-language-server
 
 mkdir -p ~/.tmp
 rm -rf ~/.vim
@@ -28,7 +28,6 @@ ln -sf /run/user/$UID/gnupg ~/.gnupg-run
 sudo ln -sf $SCRIPTPATH/ksec.py /usr/local/bin/ksec
 sudo chmod +x /usr/local/bin/ksec
 ln -sf ~/.vim/vimrc ~/.vimrc
-vim +PlugInstall +qall
 
 # GPG
 sudo apt-get install -y gnupg2 gnupg-agent libpth20 pinentry-curses libccid pcscd scdaemon libksba8
@@ -36,17 +35,17 @@ curl "https://raw.githubusercontent.com/tdickman/dotfiles/master/gpg/tom-public-
 printf 'default-cache-ttl 600\nmax-cache-ttl 7200\nenable-ssh-support\n' > ~/.gnupg/gpg-agent.conf
 
 # Nvim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+#            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim +PlugInstall +qall
 
-pip3 install black
+pipx install black
 
 # Git aliases
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.st status
-git config --global user.email "tdickman@gmail.com"
+git config --global user.email "git@tomdickman.com"
 git config --global user.name "Tom Dickman"
 git config --global core.excludesfile ~/dotfiles/global_gitignore
 
@@ -111,7 +110,7 @@ gpg --yes -o ~/.ssh/config -d configs/ssh-config.gpg
 sudo apt install -y ripgrep
 wget -O /tmp/nvim-linux64.deb https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.deb
 sudo dpkg -i /tmp/nvim-linux64.deb
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+# git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 
 # Install fonts for editor
