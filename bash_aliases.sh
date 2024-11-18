@@ -357,14 +357,30 @@ export -f tmux-attach
 tmux-ssh() { ssh "$@" -A -X -t 'PS1=tmux-ssh- ; . ~/dotfiles/bash_aliases.sh ; tmux-x-attach'; tput init; }
 export -f tmux-ssh
 sty() {
-    # Add `StreamLocalBindUnlink yes` to /etc/ssh/sshd_config otherwise the following is necessary
-    # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
+    # Get local user ID and username
+    local local_uid=$(id -u)
+    local local_user=$(whoami)
+
+    # Extract remote username and host from SSH argument
+    if [[ "$1" == *"@"* ]]; then
+        local remote_user=$(echo "$1" | cut -d@ -f1)
+        local remote_host=$(echo "$1" | cut -d@ -f2)
+    else
+        local remote_user=$local_user
+        local remote_host=$1
+    fi
+
+    # Construct full SSH destination
+    local ssh_dest="${remote_user}@${remote_host}"
+
+    # Get remote user ID using SSH
+    local remote_uid=$(ssh "$ssh_dest" id -u)
+
     # Make sure gpg-agent is running locally
     gpg -K > /dev/null
-    REMOTE_USERNAME=$(echo $1 | awk -F "@" '{print $1}')
-    HOSTNAME=$(echo $1 | awk -F "@" '{print $2}')
-    if [ "$HOSTNAME" == "" ]; then REMOTE_USERNAME="tom"; fi
-    tmux-ssh -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
+
+    # Forward GPG agent using correct UIDs
+    tmux-ssh -A -R "/run/user/${remote_uid}/gnupg/S.gpg-agent:/run/user/${local_uid}/gnupg/S.gpg-agent.extra" -R "/home/${remote_user}/.gnupg-run/S.gpg-agent.ssh:/home/${local_user}/.gnupg-run/S.gpg-agent.ssh" "$ssh_dest"
 }
 export -f sty
 gpgforward() {
@@ -372,11 +388,31 @@ gpgforward() {
     # ssh -t $1 "rm /run/user/1000/gnupg/S.gpg-agent.ssh"
     # Make sure gpg-agent is running locally
     gpg -K > /dev/null
-    REMOTE_USERNAME=$(echo $1 | awk -F "@" '{print $1}')
-    HOSTNAME=$(echo $1 | awk -F "@" '{print $2}')
-    if [ "$HOSTNAME" == "" ]; then REMOTE_USERNAME="tom"; fi
-    ssh $1 killall gpg-agent
-    ssh -N -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent:/home/$USER/.gnupg-run/S.gpg-agent -R /home/$REMOTE_USERNAME/.gnupg-run/S.gpg-agent.ssh:/home/$USER/.gnupg-run/S.gpg-agent.ssh $1
+
+    # ssh $1 killall gpg-agent
+
+    # Get local user ID and username
+    local local_uid=$(id -u)
+    local local_user=$(whoami)
+
+    # Extract remote username and host from SSH argument
+    if [[ "$1" == *"@"* ]]; then
+        local remote_user=$(echo "$1" | cut -d@ -f1)
+        local remote_host=$(echo "$1" | cut -d@ -f2)
+    else
+        local remote_user=$local_user
+        local remote_host=$1
+    fi
+
+    # Construct full SSH destination
+    local ssh_dest="${remote_user}@${remote_host}"
+
+    # Get remote user ID using SSH
+    local remote_uid=$(ssh "$ssh_dest" id -u)
+
+    # Make sure gpg-agent is running locally
+    gpg -K > /dev/null
+    ssh -N -A -R "/run/user/${remote_uid}/gnupg/S.gpg-agent:/run/user/${local_uid}/gnupg/S.gpg-agent.extra" -R "/home/${remote_user}/.gnupg-run/S.gpg-agent.ssh:/home/${local_user}/.gnupg-run/S.gpg-agent.ssh" "$ssh_dest"
 }
 export -f gpgforward
 
