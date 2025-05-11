@@ -16,8 +16,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- 1) Tell LazyVim to manage *itself* so you can update it with :Lazy update
+    {
+      "folke/lazy.nvim",
+      version = "*",   -- use latest **stable** tag
+      lazy    = false, -- load at startup
+    },
+
+    -- 2) your normal LazyVim + your plugins
+    {
+      "LazyVim/LazyVim",
+      branch = "main",
+      version = false,
+      import = "lazyvim.plugins"
+    },
     -- import/override with your plugins
     { import = "plugins" },
   },
