@@ -23,6 +23,12 @@ max-cache-ttl 7200
 enable-ssh-support
 ```
 
+# Add the following to the bottom of /etc/ssh/sshd_config
+
+```
+StreamLocalBindUnlink=yes
+```
+
 # Update bash init file
 
 See bash_shared.sh content. You may have to kill gpg-agent to get it to restart and use the new settings:
